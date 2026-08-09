@@ -11,3 +11,14 @@
     gap: 18px;
   }
 }
+
+.highlight {
+  font-size: 1.3em;
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+.highlight-alt {
+  font-size: 1.1em;
+  color: var(--accent-teal);
+}
