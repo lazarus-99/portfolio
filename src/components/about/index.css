@@ -9,6 +9,8 @@
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .about-name {
