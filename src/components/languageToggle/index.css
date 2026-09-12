@@ -1,0 +1,26 @@
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--sidebar-border);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+  opacity: 0.75;
+}
+
+.lang-toggle {
+  width: auto;
+  gap: 6px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+}

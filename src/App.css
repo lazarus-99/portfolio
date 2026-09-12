@@ -4,7 +4,9 @@
   gap: 25px;
   place-content: center;
   place-items: center;
-  flex-grow: 1;
+  min-height: 100svh;
+  box-sizing: border-box;
+  padding: 32px 40px;
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
@@ -14,11 +16,26 @@
 
 .highlight {
   font-size: 1.3em;
-  color: var(--accent-purple);
+  color: var(--color-purple);
   font-weight: 500;
 }
 
 .highlight-alt {
   font-size: 1.1em;
-  color: var(--accent-teal);
+  color: var(--color-cyan);
+}
+
+.utility-toggles {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 150;
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .utility-toggles {
+    right: 64px;
+  }
 }

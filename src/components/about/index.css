@@ -1,0 +1,49 @@
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100svh;
+  box-sizing: border-box;
+  padding: 32px 40px;
+  place-content: center;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-name {
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+
+.section-eyebrow {
+  color: var(--color-cyan);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.about-role {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.about-experience {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.about-bio {
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 160%;
+  margin-top: 8px;
+}
+
+@media (max-width: 1024px) {
+  .about-section {
+    padding: 32px 20px;
+  }
+}

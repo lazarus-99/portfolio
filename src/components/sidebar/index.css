@@ -9,7 +9,6 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 24px 0;
-  backdrop-filter: blur(10px);
   z-index: 100;
 }
 
@@ -22,19 +21,34 @@
 }
 
 .sidebar-nav a {
-  writing-mode: horizontal-tb;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
   text-decoration: none;
   text-align: center;
   padding: 4px 8px;
   transition: color 0.2s ease;
+}
+
+.sidebar-nav a span {
+  font-size: 16px;
   writing-mode: sideways-lr;
   text-orientation: mixed;
 }
 
-.sidebar-nav a:hover {
-  color: #fff;
+.sidebar-nav a:hover svg {
+  color: var(--color-cyan-light);
+}
+
+.sidebar-nav a:hover span {
+  background: linear-gradient(90deg, #6d28d9, #0891b2, #1e3a8a);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 3s ease infinite;
 }
 
 .sidebar-socials {
@@ -46,13 +60,13 @@
 }
 
 .sidebar-socials a {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 18px;
+  display: flex;
+  color: var(--text-muted);
   transition: color 0.2s ease;
 }
 
 .sidebar-socials a:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 /* Botón hamburguesa: oculto por defecto (solo aparece en mobile) */
@@ -112,6 +126,8 @@
     transform: translateX(100%);
     transition: transform 0.3s ease;
     border-right: none;
+    background: var(--bg-base);
+    backdrop-filter: blur(10px);
   }
 
   .sidebar-open {
@@ -124,8 +140,13 @@
   }
 
   .sidebar-nav a {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .sidebar-nav a span {
     font-size: 20px;
-    writing-mode: inherit;
+    writing-mode: horizontal-tb;
   }
 
   .sidebar-socials {
