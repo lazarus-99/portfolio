@@ -1,3 +1,4 @@
+import { IconDatabase } from '@tabler/icons-react';
 import { useLanguage } from '../../context/languageContext';
 import { skillGroups } from '../../data/skills';
 import './index.css';
@@ -22,7 +23,15 @@ export default function Developer() {
               <h3>{t(`developer.skills.${group.key}`)}</h3>
               <div className="skills-tags">
                 {group.items.map((item) => (
-                  <span key={item} className="skill-tag">{item}</span>
+                  <div key={item.name} className="skill-tag" title={item.name}>
+                    <span className="skill-shimmer" />
+                    {item.icon ? (
+                      <img src={item.icon} alt={item.name} className="skill-icon" />
+                    ) : (
+                      <IconDatabase size={22} stroke={1.75} className="skill-icon skill-icon-fallback" />
+                    )}
+                    <span className="skill-name">{item.name}</span>
+                  </div>
                 ))}
               </div>
             </div>

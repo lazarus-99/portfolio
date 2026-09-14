@@ -46,16 +46,79 @@
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-content: flex-start;
+  gap: 12px;
 }
 
 .skill-tag {
-  padding: 6px 14px;
-  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 84px;
+  padding: 14px 10px;
+  border-radius: 12px;
   background: var(--bg-surface);
   border: 1px solid var(--sidebar-border);
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 12px;
+  text-align: center;
+  cursor: default;
+  transition: transform 0.25s ease, filter 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.skills-tags:hover .skill-tag {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.skills-tags:hover .skill-tag:hover {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.15);
+  border-color: var(--color-cyan);
+  z-index: 2;
+}
+
+.skill-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(34, 211, 238, 0.4) 50%, transparent 80%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.skill-tag:hover .skill-shimmer {
+  animation: skill-shimmer 0.9s ease;
+}
+
+@keyframes skill-shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+.skill-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.skill-icon-fallback {
+  color: var(--text-muted);
+}
+
+.skill-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .personal-projects-card {
