@@ -4,7 +4,6 @@ const translations = {
       about: 'About',
       developer: 'Developer',
       teaching: 'Teaching',
-      contact: 'Contact',
     },
     a11y: {
       toggleTheme: 'Toggle color theme',
@@ -14,8 +13,12 @@ const translations = {
       email: 'Send an email',
     },
     hero: {
-      greeting: "Hi, I'm ",
-      role: 'full stack developer',
+      meta: 'Full Stack Developer · Bolivia',
+      headlineLine1: 'Database up,',
+      headlineLine2Prefix: 'interface ',
+      headlineTyped: 'down.',
+      bio: "Five years building web applications end to end — schema, API, UI. I also teach Database I and II at UAGRM, which means I've had to explain every decision I make to a room of people who will ask why. That habit shows up in the code.",
+      cta: 'Get in touch',
     },
     about: {
       title: 'About me',
@@ -45,8 +48,7 @@ const translations = {
     },
     contact: {
       title: 'Contact',
-      subtitle: "Feel free to reach out — I'm happy to talk.",
-      emailLabel: 'Email',
+      headline: 'Open to work, and happy to help you.',
       linkedinLabel: 'LinkedIn',
       githubLabel: 'GitHub',
     },
@@ -56,7 +58,6 @@ const translations = {
       about: 'Sobre mí',
       developer: 'Developer',
       teaching: 'Docencia',
-      contact: 'Contacto',
     },
     a11y: {
       toggleTheme: 'Cambiar tema de color',
@@ -66,8 +67,12 @@ const translations = {
       email: 'Enviar un correo',
     },
     hero: {
-      greeting: 'Hola, soy ',
-      role: 'desarrollador full stack',
+      meta: 'Desarrollador Full Stack · Bolivia',
+      headlineLine1: 'De la base de datos,',
+      headlineLine2Prefix: 'a la ',
+      headlineTyped: 'interfaz.',
+      bio: 'Cinco años construyendo aplicaciones web de punta a punta — esquema, API, interfaz. También doy clases de Base de Datos I y II en la UAGRM, así que estoy acostumbrado a explicar cada decisión que tomo a un salón lleno de gente que pregunta por qué. Ese hábito se nota en el código.',
+      cta: 'Escribime',
     },
     about: {
       title: 'Sobre mí',
@@ -97,8 +102,7 @@ const translations = {
     },
     contact: {
       title: 'Contacto',
-      subtitle: 'Escribime cuando quieras, con gusto hablamos.',
-      emailLabel: 'Correo',
+      headline: 'Disponible para trabajar, y feliz de ayudarte.',
       linkedinLabel: 'LinkedIn',
       githubLabel: 'GitHub',
     },

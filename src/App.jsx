@@ -9,6 +9,7 @@ import Developer from './components/developer';
 import Teaching from './components/teaching';
 import Contact from './components/contact';
 import { useLanguage } from './context/languageContext';
+import { socialLinks } from './data/socials';
 
 function App() {
   const { t } = useLanguage();
@@ -22,26 +23,26 @@ function App() {
       </div>
       <Sidebar />
       <main className="page-content">
-        <section id="center">
-          <h1>
+        <section id="center" className="hero">
+          <p className="hero-meta">{t('hero.meta')}</p>
+          <h1 className="hero-headline">
+            {t('hero.headlineLine1')}
+            <br />
+            {t('hero.headlineLine2Prefix')}
             <TypewriterText
-              segments={[
-                { text: t('hero.greeting') },
-                { text: 'Lazaro Toconas', className: 'highlight' },
-              ]}
-              speed={50}
+              segments={[{ text: t('hero.headlineTyped') }]}
+              speed={90}
               loop={true}
-              restartDelay={4000}
+              restartDelay={2200}
             />
           </h1>
-          <TypewriterText
-              segments={[
-                { text: t('hero.role'), className: 'highlight-alt' },
-              ]}
-              speed={50}
-              loop={true}
-              restartDelay={4000}
-            />
+          <p className="hero-bio">{t('hero.bio')}</p>
+          <div className="hero-actions">
+            <a className="hero-cta" href={`mailto:${socialLinks.email}`}>
+              {t('hero.cta')}
+            </a>
+            <span className="hero-email">{socialLinks.email}</span>
+          </div>
         </section>
         <About />
         <Developer />

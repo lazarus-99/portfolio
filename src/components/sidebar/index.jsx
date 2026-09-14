@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IconUser, IconCode, IconSchool, IconAddressBook, IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react';
+import { IconUser, IconCode, IconSchool, IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react';
 import { useLanguage } from '../../context/languageContext';
 import { socialLinks } from '../../data/socials';
 import './index.css';
@@ -20,7 +20,6 @@ export default function Sidebar() {
     { label: t('nav.about'), href: '#about', icon: IconUser },
     { label: t('nav.developer'), href: '#developer', icon: IconCode },
     { label: t('nav.teaching'), href: '#teaching', icon: IconSchool },
-    { label: t('nav.contact'), href: '#contact', icon: IconAddressBook },
   ];
 
   const socials = [
