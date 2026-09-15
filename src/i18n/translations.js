@@ -1,3 +1,5 @@
+import uagrmLogo from '../assets/uagrm-logo.png';
+
 const translations = {
   en: {
     nav: {
@@ -41,10 +43,18 @@ const translations = {
     },
     teaching: {
       title: 'Teaching',
-      role: 'Teaching Assistant',
-      institution: 'Universidad Autónoma Gabriel René Moreno (UAGRM)',
-      coursesTitle: 'Courses',
-      courses: ['Database I', 'Database II'],
+      present: 'Present',
+      entries: [
+        {
+          title: 'Teaching Assistant',
+          school: 'Universidad Autónoma Gabriel René Moreno (UAGRM)',
+          subjects: ['Database I', 'Database II'],
+          dateStart: '03 · 2018',
+          dateEnd: '12 · 2018',
+          content: 'Training in the design, modeling, and management of databases, covering the entity-relationship model, the relational model, normalization, functional dependencies, and SQL. Builds skills in advanced queries, stored procedures, transaction management, security, optimization, and database administration, applying these concepts to practical projects focused on information systems.',
+          logo: uagrmLogo,
+        },
+      ],
     },
     contact: {
       title: 'Contact',
@@ -95,10 +105,18 @@ const translations = {
     },
     teaching: {
       title: 'Docencia',
-      role: 'Auxiliar de Docencia',
-      institution: 'Universidad Autónoma Gabriel René Moreno (UAGRM)',
-      coursesTitle: 'Materias',
-      courses: ['Base de Datos I', 'Base de Datos II'],
+      present: 'Presente',
+      entries: [
+        {
+          title: 'Auxiliar de Docencia',
+          school: 'Universidad Autónoma Gabriel René Moreno (UAGRM)',
+          subjects: ['Base de Datos I', 'Base de Datos II'],
+          dateStart: '03 - 2018',
+          dateEnd: '12 - 2018',
+          content: 'Formación en el diseño, modelado y gestión de bases de datos, abordando el modelo entidad-relación, el modelo relacional, normalización, dependencias funcionales y lenguaje SQL. Se desarrollan conocimientos en consultas avanzadas, procedimientos almacenados, gestión de transacciones, seguridad, optimización y administración de bases de datos, aplicando estos conceptos en proyectos prácticos orientados al desarrollo de sistemas de información.',
+          logo: uagrmLogo,
+        },
+      ],
     },
     contact: {
       title: 'Contacto',

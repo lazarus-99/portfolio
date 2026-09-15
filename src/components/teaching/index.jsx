@@ -1,24 +1,17 @@
 import { useLanguage } from '../../context/languageContext';
+import EducationEntry from './EducationEntry';
 import './index.css';
 
 export default function Teaching() {
   const { t } = useLanguage();
-  const courses = t('teaching.courses');
+  const entries = t('teaching.entries');
 
   return (
     <section id="teaching" className="teaching-section">
-      <h2 className="section-eyebrow">{t('teaching.title')}</h2>
-      <h2 className="teaching-role">{t('teaching.role')}</h2>
-      <p className="teaching-institution">{t('teaching.institution')}</p>
-
-      <div className="teaching-courses">
-        <h3>{t('teaching.coursesTitle')}</h3>
-        <ul>
-          {Array.isArray(courses) && courses.map((course) => (
-            <li key={course}>{course}</li>
-          ))}
-        </ul>
-      </div>
+      <span className="section-eyebrow">{t('teaching.title')}</span>
+      {Array.isArray(entries) && entries.map((entry) => (
+        <EducationEntry key={`${entry.school}-${entry.title}`} {...entry} />
+      ))}
     </section>
   );
 }

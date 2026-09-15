@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg data-dc-tpl="11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Logo, light mode" style="" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs data-dc-tpl="12">
+            <linearGradient data-dc-tpl="13" id="l-chevA" x1="0" y1="0" x2="1" y2="1">
+              <stop data-dc-tpl="14" offset="0" stop-color="#22D3EE"/>
+              <stop data-dc-tpl="15" offset="1" stop-color="#2CC3E8"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="16" id="l-chevB" x1="0" y1="0" x2="1" y2="1">
+              <stop data-dc-tpl="17" offset="0" stop-color="#A78BFA"/>
+              <stop data-dc-tpl="18" offset="1" stop-color="#9B7BF8"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="19" id="l-slash" x1="688" y1="244" x2="330" y2="800" gradientUnits="userSpaceOnUse">
+              <stop data-dc-tpl="20" offset="0" stop-color="#22D3EE"/>
+              <stop data-dc-tpl="21" offset="1" stop-color="#8B7CF6"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="22" id="l-sq" x1="341" y1="512" x2="491" y2="512" gradientUnits="userSpaceOnUse">
+              <stop data-dc-tpl="23" offset="0" stop-color="#22D3EE"/>
+              <stop data-dc-tpl="24" offset="1" stop-color="#8B7CF6"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="25" id="l-glass" x1="320" y1="243" x2="691" y2="783" gradientUnits="userSpaceOnUse">
+              <stop data-dc-tpl="26" offset="0" stop-color="#ffffff" stop-opacity="0.58"/>
+              <stop data-dc-tpl="27" offset="0.5" stop-color="#ffffff" stop-opacity="0.3"/>
+              <stop data-dc-tpl="28" offset="1" stop-color="#ffffff" stop-opacity="0.44"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="29" id="l-rim" x1="320" y1="243" x2="691" y2="783" gradientUnits="userSpaceOnUse">
+              <stop data-dc-tpl="30" offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+              <stop data-dc-tpl="31" offset="0.45" stop-color="#ffffff" stop-opacity="0.15"/>
+              <stop data-dc-tpl="32" offset="1" stop-color="#ffffff" stop-opacity="0.8"/>
+            </linearGradient>
+            <linearGradient data-dc-tpl="33" id="l-sheen" x1="320" y1="243" x2="380" y2="520" gradientUnits="userSpaceOnUse">
+              <stop data-dc-tpl="34" offset="0" stop-color="#ffffff" stop-opacity="0.6"/>
+              <stop data-dc-tpl="35" offset="1" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+            <filter data-dc-tpl="36" id="l-refract" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+              <feTurbulence data-dc-tpl="37" type="fractalNoise" baseFrequency="0.006" numOctaves="2" seed="9" result="n"/>
+              <feDisplacementMap data-dc-tpl="38" in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" result="d"/>
+              <feGaussianBlur data-dc-tpl="39" in="d" stdDeviation="3"/>
+            </filter>
+            <filter data-dc-tpl="40" id="l-sh" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+              <feDropShadow data-dc-tpl="41" dx="0" dy="8" stdDeviation="10" flood-color="#2a2140" flood-opacity="0.18"/>
+            </filter>
+            <filter data-dc-tpl="42" id="l-shPanel" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+              <feDropShadow data-dc-tpl="43" dx="0" dy="12" stdDeviation="16" flood-color="#2a2140" flood-opacity="0.12"/>
+            </filter>
+            <clipPath data-dc-tpl="44" id="l-clip">
+              <path data-dc-tpl="45" d="M368 243 H459 A48 48 0 0 1 507 291 V568 A24 24 0 0 0 531 592 H643 A48 48 0 0 1 691 640 V735 A48 48 0 0 1 643 783 H368 A48 48 0 0 1 320 735 V291 A48 48 0 0 1 368 243 Z"/>
+            </clipPath>
+            <g data-dc-tpl="46" id="l-marks">
+              <path data-dc-tpl="47" d="M272 347 L60 512 L272 677" fill="none" stroke="url(#l-chevA)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+              <path data-dc-tpl="48" d="M752 347 L964 512 L752 677" fill="none" stroke="url(#l-chevB)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+              <path data-dc-tpl="49" d="M688 244 L330 800" fill="none" stroke="url(#l-slash)" stroke-width="32" stroke-linecap="round"/>
+            </g>
+            <g data-dc-tpl="50" id="l-grid" opacity="0.32">
+              <path data-dc-tpl="51" d="M272 347 L60 512 L272 677" fill="none" stroke="#ffffff" stroke-width="58" stroke-dasharray="1.6 56"/>
+              <path data-dc-tpl="52" d="M752 347 L964 512 L752 677" fill="none" stroke="#ffffff" stroke-width="58" stroke-dasharray="1.6 56"/>
+              <path data-dc-tpl="53" d="M272 347 L60 512 L272 677" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+              <path data-dc-tpl="54" d="M752 347 L964 512 L752 677" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+            </g>
+          </defs>
+
+          <g data-dc-tpl="55" filter="url(#l-sh)">
+            <use data-dc-tpl="56" href="#l-marks"/>
+          </g>
+          <g data-dc-tpl="57" opacity="0">
+            <use data-dc-tpl="58" href="#l-grid"/>
+          </g>
+
+          <g data-dc-tpl="59" clip-path="url(#l-clip)" opacity="1">
+            <g data-dc-tpl="60" transform="translate(505.5,513) scale(1.07) translate(-505.5,-513)" opacity="0.9" filter="url(#l-refract)">
+              <use data-dc-tpl="61" href="#l-marks"/>
+            </g>
+            <path data-dc-tpl="62" d="M368 243 H459 A48 48 0 0 1 507 291 V568 A24 24 0 0 0 531 592 H643 A48 48 0 0 1 691 640 V735 A48 48 0 0 1 643 783 H368 A48 48 0 0 1 320 735 V291 A48 48 0 0 1 368 243 Z" fill="url(#l-glass)"/>
+            <path data-dc-tpl="63" d="M368 243 H459 A48 48 0 0 1 507 291 V568 A24 24 0 0 0 531 592 H643 A48 48 0 0 1 691 640 V735 A48 48 0 0 1 643 783 H368 A48 48 0 0 1 320 735 V291 A48 48 0 0 1 368 243 Z" fill="url(#l-sheen)"/>
+          </g>
+          <g data-dc-tpl="64" opacity="1">
+            <path data-dc-tpl="65" d="M368 243 H459 A48 48 0 0 1 507 291 V568 A24 24 0 0 0 531 592 H643 A48 48 0 0 1 691 640 V735 A48 48 0 0 1 643 783 H368 A48 48 0 0 1 320 735 V291 A48 48 0 0 1 368 243 Z" fill="none" stroke="url(#l-rim)" stroke-width="2.2"/>
+          </g>
+
+          <g data-dc-tpl="66" filter="url(#l-sh)">
+            <rect data-dc-tpl="67" x="341" y="262" width="150" height="152" rx="44" fill="url(#l-sq)"/>
+            <rect data-dc-tpl="68" x="341" y="436" width="150" height="152" rx="44" fill="url(#l-sq)"/>
+            <rect data-dc-tpl="69" x="341" y="610" width="150" height="152" rx="44" fill="url(#l-sq)"/>
+            <rect data-dc-tpl="70" x="513" y="610" width="150" height="152" rx="44" fill="#A78BFA"/>
+            <text data-dc-tpl="71" x="588" y="706" text-anchor="middle" fill="#ffffff" font-family="'Barlow Condensed','Arial Narrow',Helvetica,sans-serif" font-weight="700" font-size="64" letter-spacing="-1">.dev</text>
+          </g>
+        </svg>
