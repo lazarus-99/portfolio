@@ -12,12 +12,34 @@
   z-index: 100;
 }
 
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-logo {
+  display: flex;
+  margin-bottom: 40px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sidebar-logo:hover {
+  transform: scale(1.08);
+  opacity: 0.85;
+}
+
+.sidebar-logo img {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
 .sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 24px;
   align-items: center;
-  margin-top: 60px;
 }
 
 .sidebar-nav a {
@@ -33,16 +55,38 @@
 }
 
 .sidebar-nav a span {
+  position: relative;
   font-size: 16px;
   writing-mode: sideways-lr;
   text-orientation: mixed;
 }
 
-.sidebar-nav a:hover svg {
+/* Rotated text: its "underline" runs vertically on the physical right; top is the text's end. */
+.sidebar-nav a span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -5px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, var(--color-cyan), var(--color-purple));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.35s ease;
+}
+
+.sidebar-nav a.active span::after {
+  transform: scaleY(1);
+}
+
+.sidebar-nav a:hover svg,
+.sidebar-nav a.active svg {
   color: var(--color-cyan-light);
 }
 
-.sidebar-nav a:hover span {
+.sidebar-nav a:hover span,
+.sidebar-nav a.active span {
   background: linear-gradient(90deg, #6d28d9, #0891b2, #1e3a8a);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -78,9 +122,9 @@
   z-index: 200;
   width: 40px;
   height: 40px;
-  background: rgba(10, 10, 15, 0.6);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--sidebar-border);
   border-radius: 8px;
   cursor: pointer;
   align-items: center;
@@ -98,7 +142,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background: #fff;
+  background: var(--text-primary);
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -126,16 +170,23 @@
     transform: translateX(100%);
     transition: transform 0.3s ease;
     border-right: none;
-    background: var(--bg-base);
-    backdrop-filter: blur(10px);
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-left: 1px solid var(--sidebar-border);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
   }
 
   .sidebar-open {
     transform: translateX(0);
   }
 
+  .sidebar-logo img {
+    width: 44px;
+    height: 44px;
+  }
+
   .sidebar-nav {
-    margin-top: 0;
     gap: 32px;
   }
 
@@ -149,8 +200,26 @@
     writing-mode: horizontal-tb;
   }
 
+  .sidebar-nav a span::after {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: -6px;
+    width: auto;
+    height: 2px;
+    background: linear-gradient(to left, var(--color-cyan), var(--color-purple));
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  .sidebar-nav a.active span::after {
+    transform: scaleX(1);
+  }
+
   .sidebar-socials {
     flex-direction: row;
+    justify-content: center;
+    width: 100%;
     margin-top: 40px;
   }
 }

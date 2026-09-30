@@ -38,6 +38,17 @@
   }
 }
 
+.hero-meta-country {
+  white-space: nowrap;
+}
+
+.hero-flag {
+  width: 1.6em;
+  height: 1.17em;
+  margin-left: 0.6em;
+  vertical-align: -0.2em;
+}
+
 .hero-bio {
   max-width: 620px;
   color: var(--text-secondary);
@@ -73,7 +84,7 @@
 }
 
 .hero-email {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 14px;
   font-family: var(--mono);
 }

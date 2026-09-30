@@ -3,26 +3,42 @@ import translations from '../i18n/translations';
 
 const LanguageContext = createContext();
 
+const SUPPORTED = ['en', 'es'];
+const DEFAULT_LANGUAGE = 'en';
+const STORAGE_KEY = 'preferredLanguage';
+
+function detectBrowserLanguage() {
+  const preferred = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const tag of preferred) {
+    const base = tag?.toLowerCase().split('-')[0];
+    if (SUPPORTED.includes(base)) return base;
+  }
+  return DEFAULT_LANGUAGE;
+}
+
+function getInitialLanguage() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return SUPPORTED.includes(saved) ? saved : detectBrowserLanguage();
+}
+
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(
-    localStorage.getItem('language') ||
-    (navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en')
-  );
+  const [language, setLanguage] = useState(getInitialLanguage);
 
   useEffect(() => {
     document.documentElement.setAttribute('lang', language);
-    localStorage.setItem('language', language);
   }, [language]);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'es' ? 'en' : 'es'));
+    const next = language === 'es' ? 'en' : 'es';
+    localStorage.setItem(STORAGE_KEY, next);
+    setLanguage(next);
   };
 
   const t = (path) =>
     path.split('.').reduce((acc, key) => acc?.[key], translations[language]) ?? path;
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

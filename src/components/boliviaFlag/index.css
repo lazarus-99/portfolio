@@ -1,0 +1,39 @@
+.bolivia-flag {
+  display: inline-block;
+  overflow: visible;
+}
+
+.bolivia-flag-strip {
+  animation: bolivia-flag-wave 1.2s ease-in-out infinite alternate;
+}
+
+.bolivia-flag-shade {
+  fill: #000;
+  opacity: 0;
+  animation: bolivia-flag-shade 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes bolivia-flag-wave {
+  from {
+    transform: translateY(calc(var(--amp) * -1));
+  }
+  to {
+    transform: translateY(var(--amp));
+  }
+}
+
+@keyframes bolivia-flag-shade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bolivia-flag-strip,
+  .bolivia-flag-shade {
+    animation: none;
+  }
+}
