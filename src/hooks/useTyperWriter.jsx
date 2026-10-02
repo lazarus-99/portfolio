@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react';
+import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 
 export function useTypewriter(fullText, { speed = 60, loop = false, restartDelay = 3000 } = {}) {
-  const [count, setCount] = useState(0);
+  const reduceMotion = usePrefersReducedMotion();
+  const [typed, setTyped] = useState({ text: fullText, count: 0 });
+
+  // Restart from zero when the text changes (e.g. switching language), during render rather than in the effect.
+  if (typed.text !== fullText) {
+    setTyped({ text: fullText, count: 0 });
+  }
 
   useEffect(() => {
-    setCount(0);
-    let i = 0;
+    if (reduceMotion) return;
     let typingInterval;
     let restartTimeout;
 
     const startTyping = () => {
-      i = 0;
-      setCount(0);
+      let i = 0;
       typingInterval = setInterval(() => {
         i++;
-        setCount(i);
+        setTyped({ text: fullText, count: i });
         if (i >= fullText.length) {
           clearInterval(typingInterval);
           if (loop) {
-            restartTimeout = setTimeout(startTyping, restartDelay);
+            restartTimeout = setTimeout(() => {
+              setTyped({ text: fullText, count: 0 });
+              startTyping();
+            }, restartDelay);
           }
         }
       }, speed);
@@ -30,7 +38,8 @@ export function useTypewriter(fullText, { speed = 60, loop = false, restartDelay
       clearInterval(typingInterval);
       clearTimeout(restartTimeout);
     };
-  }, [fullText, speed, loop, restartDelay]);
+  }, [fullText, speed, loop, restartDelay, reduceMotion]);
 
-  return count;
+  if (reduceMotion) return fullText.length;
+  return typed.text === fullText ? typed.count : 0;
 }

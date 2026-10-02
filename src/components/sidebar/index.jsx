@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IconUser, IconCode, IconSchool, IconBrandGithub, IconBrandLinkedin, IconMail } from '@tabler/icons-react';
-import { useLanguage } from '../../context/languageContext';
-import { useTheme } from '../../context/themeContext';
+import { useLanguage } from '../../context/language';
+import { useTheme } from '../../context/theme';
 import { socialLinks } from '../../data/socials';
 import logoDark from '../../assets/logo-dark-glass.svg';
 import logoLight from '../../assets/logo-light-glass.svg';
@@ -61,7 +61,9 @@ export default function Sidebar() {
       <button
         className="hamburger-btn"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
+        aria-label={t('a11y.menu')}
+        aria-expanded={isOpen}
+        aria-controls="site-menu"
       >
         <span className={`hamburger-icon ${isOpen ? 'open' : ''}`}>
           <span></span>
@@ -70,7 +72,7 @@ export default function Sidebar() {
         </span>
       </button>
 
-      <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
+      <aside id="site-menu" className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-top">
           <a href="#center" onClick={closeMenu} className="sidebar-logo" aria-label={t('a11y.home')}>
             <img src={logoSrc} alt="" />

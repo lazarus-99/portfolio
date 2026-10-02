@@ -1,5 +1,5 @@
 import { IconBrandLinkedin, IconBrandGithub } from '@tabler/icons-react';
-import { useLanguage } from '../../context/languageContext';
+import { useLanguage } from '../../context/language';
 import { socialLinks } from '../../data/socials';
 import './index.css';
 
@@ -9,8 +9,8 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-inner">
-        <span className="section-eyebrow">{t('contact.title')}</span>
-        <h2 className="contact-headline">{t('contact.headline')}</h2>
+        <h2 className="section-eyebrow">{t('contact.title')}</h2>
+        <h3 className="contact-headline">{t('contact.headline')}</h3>
         <div className="contact-links">
           <a className="contact-pill" href={`mailto:${socialLinks.email}`}>
             {socialLinks.email}

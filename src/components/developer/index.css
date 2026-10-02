@@ -63,6 +63,16 @@
   animation-play-state: paused;
 }
 
+/* Keyboard users get a still row from the first skill, without the edge fade hiding the focused one. */
+.dock-track:focus-within {
+  animation: none;
+}
+
+.dock-viewport:focus-within {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 /* Trailing padding equals the gap so one copy is exactly --loop wide at rest. */
 .dock-list {
   display: flex;
@@ -104,6 +114,41 @@
 
 .dock-bubble:hover {
   color: var(--text-primary);
+}
+
+.dock-item:focus {
+  outline: none;
+}
+
+.dock-item:focus-visible .dock-bubble {
+  color: var(--text-primary);
+  box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--link);
+}
+
+.dock-caption {
+  display: none;
+}
+
+/* Touch screens have no hover, so the names are always visible under the icons. */
+@media (hover: none) {
+  .dock-track {
+    height: calc(var(--item) + 26px);
+  }
+
+  .dock-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .dock-caption {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    color: var(--text-secondary);
+  }
 }
 
 .dock-icon-wrap {
@@ -163,23 +208,113 @@
   }
 }
 
-.personal-projects-card {
+.selected-work {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.selected-work-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.selected-work-title {
+  font-size: 20px;
+}
+
+.selected-work-intro {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 155%;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
   background: var(--bg-surface);
   border: 1px solid var(--sidebar-border);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: left;
+  border-radius: 16px;
 }
 
-.personal-projects-card h3 {
-  font-size: 16px;
-  color: var(--text-primary);
-  margin: 0 0 8px;
-}
-
-.personal-projects-card p {
+.work-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.work-title {
+  margin: 0;
+  font-family: var(--heading);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 125%;
+  color: var(--text-primary);
+}
+
+.work-description {
+  color: var(--text-secondary);
   font-size: 15px;
+  line-height: 155%;
+}
+
+.work-facts {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  row-gap: 10px;
+  column-gap: 12px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.work-facts dt {
+  color: var(--text-muted);
+}
+
+.work-facts dd {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.work-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.work-chip {
+  padding: 2px 8px;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: auto;
+  color: var(--link);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.work-link:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 1024px) {

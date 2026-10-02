@@ -1,4 +1,4 @@
-import { useLanguage } from '../../context/languageContext';
+import { useLanguage } from '../../context/language';
 
 export default function EducationEntry({ title, school, subjects, dateStart, dateEnd, content, logo }) {
   const { t } = useLanguage();
@@ -9,7 +9,7 @@ export default function EducationEntry({ title, school, subjects, dateStart, dat
         {logo && <img src={logo} alt="" className="teaching-logo" />}
         <div className="teaching-header-text">
           <h3 className="teaching-role">{title}</h3>
-          <h2 className="teaching-institution">{school}</h2>
+          <p className="teaching-institution">{school}</p>
           {subjects?.length > 0 && (
             <p className="teaching-courses-line">{subjects.join(' • ')}</p>
           )}

@@ -9,7 +9,7 @@ import Developer from './components/developer';
 import Teaching from './components/teaching';
 import Contact from './components/contact';
 import BoliviaFlag from './components/boliviaFlag';
-import { useLanguage } from './context/languageContext';
+import { useLanguage } from './context/language';
 import { socialLinks } from './data/socials';
 
 function App() {
@@ -41,8 +41,6 @@ function App() {
             <TypewriterText
               segments={[{ text: t('hero.headlineTyped') }]}
               speed={90}
-              loop={true}
-              restartDelay={2200}
             />
           </h1>
           <p className="hero-bio">{t('hero.bio')}</p>

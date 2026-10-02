@@ -1,6 +1,6 @@
 import { IconSun, IconMoon } from '@tabler/icons-react';
-import { useTheme } from '../../context/themeContext';
-import { useLanguage } from '../../context/languageContext';
+import { useTheme } from '../../context/theme';
+import { useLanguage } from '../../context/language';
 import './index.css';
 
 export default function ThemeToggle() {

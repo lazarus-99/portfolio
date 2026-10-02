@@ -10,27 +10,26 @@ export default function TypewriterText({
   const fullText = segments.map((s) => s.text).join('');
   const count = useTypewriter(fullText, { speed, loop, restartDelay });
 
-  let charsUsed = 0;
-
   return (
     <span>
-      {segments.map((segment, idx) => {
-        const start = charsUsed;
-        const end = charsUsed + segment.text.length;
-        charsUsed = end;
+      {/* Screen readers get the full text once instead of every partially typed frame. */}
+      <span className="sr-only">{fullText}</span>
+      <span aria-hidden="true">
+        {segments.map((segment, idx) => {
+          const start = segments.slice(0, idx).reduce((total, s) => total + s.text.length, 0);
+          const visibleChars = Math.max(0, Math.min(segment.text.length, count - start));
+          const visibleText = segment.text.slice(0, visibleChars);
 
-        const visibleChars = Math.max(0, Math.min(segment.text.length, count - start));
-        const visibleText = segment.text.slice(0, visibleChars);
+          if (!visibleText) return null;
 
-        if (!visibleText) return null;
-
-        return (
-          <span key={idx} className={segment.className}>
-            {visibleText}
-          </span>
-        );
-      })}
-      {showCursor && count < fullText.length && <span className="typewriter-cursor">|</span>}
+          return (
+            <span key={idx} className={segment.className}>
+              {visibleText}
+            </span>
+          );
+        })}
+        {showCursor && count < fullText.length && <span className="typewriter-cursor">|</span>}
+      </span>
     </span>
   );
 }

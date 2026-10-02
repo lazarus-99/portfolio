@@ -1,6 +1,21 @@
-import { useLanguage } from '../../context/languageContext';
-import SkillsDock from './SkillsDock';
+import { lazy, Suspense } from 'react';
+import { useLanguage } from '../../context/language';
+import SelectedWork from './SelectedWork';
 import './index.css';
+
+// The dock pulls in the motion library; loading it separately keeps it out of the first-paint bundle.
+const SkillsDock = lazy(() => import('./SkillsDock'));
+
+// Same classes as the real dock, empty, so the section keeps its height while the dock loads.
+function SkillsDockPlaceholder() {
+  return (
+    <div className="skills-dock" aria-hidden="true">
+      <div className="dock-viewport">
+        <div className="dock-track" />
+      </div>
+    </div>
+  );
+}
 
 export default function Developer() {
   const { t } = useLanguage();
@@ -10,19 +25,18 @@ export default function Developer() {
       <h2 className="section-eyebrow">{t('developer.title')}</h2>
 
       <div className="developer-summary">
-        <h2 className="developer-summary-title">{t('developer.summaryTitle')}</h2>
+        <h3 className="developer-summary-title">{t('developer.summaryTitle')}</h3>
         <p>{t('developer.summary')}</p>
       </div>
 
       <div className="developer-skills">
-        <h2 className="skills-title">{t('developer.skillsTitle')}</h2>
-        <SkillsDock />
+        <h3 className="skills-title">{t('developer.skillsTitle')}</h3>
+        <Suspense fallback={<SkillsDockPlaceholder />}>
+          <SkillsDock />
+        </Suspense>
       </div>
 
-      <div className="personal-projects-card">
-        <h3>{t('developer.personalProjectsTitle')}</h3>
-        <p>{t('developer.personalProjectsNote')}</p>
-      </div>
+      <SelectedWork />
     </section>
   );
 }

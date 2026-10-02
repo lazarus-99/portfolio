@@ -1,5 +1,5 @@
 import { IconLanguage } from '@tabler/icons-react';
-import { useLanguage } from '../../context/languageContext';
+import { useLanguage } from '../../context/language';
 import './index.css';
 
 export default function LanguageToggle() {

@@ -34,6 +34,13 @@ html {
   scroll-snap-type: y mandatory;
 }
 
+/* On phones several sections are taller than the screen; mandatory snapping can skip their lower half. */
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -53,7 +60,8 @@ html {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-primary);
@@ -65,7 +73,8 @@ h1 {
   letter-spacing: -1.68px;
 }
 
-h2 {
+h2,
+h3 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
@@ -73,6 +82,19 @@ h2 {
 
 p {
   margin: 0;
+}
+
+/* Read by screen readers, invisible on screen. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (max-width: 1024px) {
@@ -94,6 +116,8 @@ p {
   --text-primary: rgba(255, 255, 255, 0.9);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.6);
+  --eyebrow: #0891b2;
+  --link: #a78bfa;
 
   --sidebar-bg: rgba(10, 10, 15, 0.6);
   --sidebar-border: rgba(255, 255, 255, 0.08);
@@ -109,6 +133,9 @@ p {
   --text-primary: rgba(10, 10, 15, 0.9);
   --text-secondary: rgba(10, 10, 15, 0.7);
   --text-muted: rgba(10, 10, 15, 0.6);
+  /* Darker than --color-cyan: 5:1 on the light background (cyan was 3.4:1). */
+  --eyebrow: #0e7490;
+  --link: #6d28d9;
 
   --sidebar-bg: rgba(255, 255, 255, 0.6);
   --sidebar-border: rgba(0, 0, 0, 0.08);
