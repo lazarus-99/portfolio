@@ -3,6 +3,11 @@
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
+  /* Every section uses the same column so their left edges line up. */
+  --content-max: 900px;
+  /* Comfortable line length for long paragraphs inside that column. */
+  --reading-max: 68ch;
+
   --color-purple: #6d28d9;
   --color-purple-light: #a78bfa;
   --color-cyan: #0891b2;
@@ -32,6 +37,11 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+}
+
+/* Turned on while a scroll-driven block (the tile reveal) is on screen. */
+html.snap-free {
+  scroll-snap-type: none;
 }
 
 /* On phones several sections are taller than the screen; mandatory snapping can skip their lower half. */
@@ -84,6 +94,13 @@ p {
   margin: 0;
 }
 
+/* Theme switch: replace the default cross-fade with the circular reveal animated from JS. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 /* Read by screen readers, invisible on screen. */
 .sr-only {
   position: absolute;
@@ -118,11 +135,13 @@ p {
   --text-muted: rgba(255, 255, 255, 0.6);
   --eyebrow: #0891b2;
   --link: #a78bfa;
+  --accent-gradient: linear-gradient(90deg, #a78bfa, #22d3ee);
 
   --sidebar-bg: rgba(10, 10, 15, 0.6);
   --sidebar-border: rgba(255, 255, 255, 0.08);
 
   --blob-opacity: 0.35;
+  --tile-bg: rgba(255, 255, 255, 0.04);
 }
 
 /* === TEMA CLARO === */
@@ -136,9 +155,11 @@ p {
   /* Darker than --color-cyan: 5:1 on the light background (cyan was 3.4:1). */
   --eyebrow: #0e7490;
   --link: #6d28d9;
+  --accent-gradient: linear-gradient(90deg, #6d28d9, #0e7490);
 
   --sidebar-bg: rgba(255, 255, 255, 0.6);
   --sidebar-border: rgba(0, 0, 0, 0.08);
 
   --blob-opacity: 0.18;
+  --tile-bg: rgba(255, 255, 255, 0.6);
 }

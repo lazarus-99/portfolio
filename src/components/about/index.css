@@ -1,16 +1,23 @@
 .about-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  align-items: center;
+  gap: 32px 56px;
   min-height: 100svh;
   box-sizing: border-box;
   padding: 32px 40px;
   place-content: center;
-  max-width: 720px;
+  max-width: var(--content-max);
   margin: 0 auto;
   text-align: left;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .about-name {
@@ -38,14 +45,198 @@
 }
 
 .about-bio {
+  max-width: var(--reading-max);
   color: var(--text-secondary);
   font-size: 17px;
   line-height: 160%;
   margin-top: 8px;
 }
 
+/* Two columns get too narrow for the bio below this, so the card moves under the text. */
+@media (max-width: 960px) {
+  .about-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 1024px) {
   .about-section {
     padding: 32px 20px;
+  }
+}
+
+/* --- Profile card: tilts toward the mouse, with a soft monochrome shine --- */
+.profile-card-wrap {
+  position: relative;
+  width: min(280px, 100%);
+  perspective: 900px;
+}
+
+/* A faint glow behind the card, in the same colors as the background blobs. */
+.profile-card-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  filter: blur(60px);
+  opacity: calc(var(--blob-opacity) * 0.8);
+}
+
+.profile-card {
+  --px: 50%;
+  --py: 50%;
+  --rx: 0deg;
+  --ry: 0deg;
+  position: relative;
+  aspect-ratio: 720 / 1003;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid var(--sidebar-border);
+  background: var(--bg-surface);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  transform: rotateX(var(--ry)) rotateY(var(--rx));
+  transition: transform 0.6s ease;
+}
+
+.profile-card.is-active {
+  transition: transform 0.12s ease-out;
+}
+
+.profile-card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+}
+
+.profile-card-shine,
+.profile-card-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Diagonal bands that slide with the pointer, like light on a laminated card. */
+.profile-card-shine {
+  background: repeating-linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 6%,
+    transparent 12%
+  );
+  background-size: 260% 260%;
+  background-position: var(--px) var(--py);
+  mix-blend-mode: overlay;
+}
+
+.profile-card-glare {
+  background: radial-gradient(circle at var(--px) var(--py), rgba(255, 255, 255, 0.32), transparent 50%);
+  mix-blend-mode: overlay;
+}
+
+.profile-card.is-active .profile-card-shine,
+.profile-card.is-active .profile-card-glare {
+  opacity: 1;
+}
+
+/* Same frosted glass as the mobile menu and the top toggles. */
+.profile-card-bar {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 10px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--sidebar-border);
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+.profile-card-bar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.profile-card-handle {
+  color: var(--text-primary);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.profile-card-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Green "online" dot with a slow pulse ring. */
+.profile-card-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.7);
+}
+
+.profile-card-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: profile-dot-pulse 2s ease-out infinite;
+}
+
+@keyframes profile-dot-pulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+.profile-card-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  margin-left: auto;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--sidebar-border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.profile-card-button:hover {
+  background: var(--sidebar-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-card {
+    transition: none;
+  }
+
+  .profile-card-dot::after {
+    animation: none;
+    opacity: 0;
   }
 }

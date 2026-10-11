@@ -1,7 +1,41 @@
+.typewriter {
+  display: inline-grid;
+}
+
+.typewriter-sizer,
+.typewriter-live {
+  grid-area: 1 / 1;
+}
+
+.typewriter-sizer {
+  visibility: hidden;
+}
+
+.typewriter-word {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Zero-width so the text after the typed word keeps normal spacing while the cursor blinks. */
 .typewriter-cursor {
+  display: inline-block;
+  width: 0;
+  color: #22d3ee;
   animation: blink 1s step-end infinite;
+}
+
+[data-theme='light'] .typewriter-cursor {
+  color: #0e7490;
 }
 
 @keyframes blink {
   50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none;
+  }
 }

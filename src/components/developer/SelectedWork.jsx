@@ -9,7 +9,7 @@ function WorkCard({ index, project, labels }) {
       <span className="work-meta">
         {number} · {label}
       </span>
-      <h4 className="work-title">{title}</h4>
+      <h3 className="work-title">{title}</h3>
       <p className="work-description">{description}</p>
       <dl className="work-facts">
         {role && (
@@ -53,10 +53,7 @@ export default function SelectedWork() {
 
   return (
     <div className="selected-work">
-      <div className="selected-work-header">
-        <h3 className="selected-work-title">{t('developer.work.title')}</h3>
-        <p className="selected-work-intro">{t('developer.work.intro')}</p>
-      </div>
+      <p className="selected-work-note">{t('developer.work.intro')}</p>
       <div className="work-grid">
         {Array.isArray(projects) &&
           projects.map((project, index) => (

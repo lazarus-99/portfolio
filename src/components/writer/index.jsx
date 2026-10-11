@@ -1,34 +1,26 @@
-import { useTypewriter } from '../../hooks/useTyperWriter';
+import { useTypewriterCycle } from '../../hooks/useTypewriterCycle';
+import './index.css';
 
-export default function TypewriterText({
-  segments,
-  speed = 60,
-  showCursor = true,
-  loop = false,
-  restartDelay = 3000,
-}) {
-  const fullText = segments.map((s) => s.text).join('');
-  const count = useTypewriter(fullText, { speed, loop, restartDelay });
+// Visual only: the caller provides the accessible text, since the typed letters change constantly.
+// Every full variant is laid out invisibly in the same grid cell, so the box keeps the size (and line
+// wrapping) of the longest one and the content below doesn't jump as words change.
+export default function TypewriterText({ words, prefix = '', suffix = '', typeSpeed, deleteSpeed, hold }) {
+  const text = useTypewriterCycle(words, { typeSpeed, deleteSpeed, hold });
 
   return (
-    <span>
-      {/* Screen readers get the full text once instead of every partially typed frame. */}
-      <span className="sr-only">{fullText}</span>
-      <span aria-hidden="true">
-        {segments.map((segment, idx) => {
-          const start = segments.slice(0, idx).reduce((total, s) => total + s.text.length, 0);
-          const visibleChars = Math.max(0, Math.min(segment.text.length, count - start));
-          const visibleText = segment.text.slice(0, visibleChars);
-
-          if (!visibleText) return null;
-
-          return (
-            <span key={idx} className={segment.className}>
-              {visibleText}
-            </span>
-          );
-        })}
-        {showCursor && count < fullText.length && <span className="typewriter-cursor">|</span>}
+    <span className="typewriter" aria-hidden="true">
+      {words.map((word) => (
+        <span key={word} className="typewriter-sizer">
+          {prefix}
+          <span className="typewriter-word">{word}</span>
+          {suffix}
+        </span>
+      ))}
+      <span className="typewriter-live">
+        {prefix}
+        <span className="typewriter-word">{text}</span>
+        <span className="typewriter-cursor">|</span>
+        {suffix}
       </span>
     </span>
   );

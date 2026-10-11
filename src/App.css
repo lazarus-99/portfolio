@@ -6,7 +6,7 @@
   min-height: 100svh;
   box-sizing: border-box;
   padding: 32px 40px;
-  max-width: 900px;
+  max-width: var(--content-max);
   margin: 0 auto;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -50,7 +50,7 @@
 }
 
 .hero-bio {
-  max-width: 620px;
+  max-width: var(--reading-max);
   color: var(--text-secondary);
   font-size: 17px;
   line-height: 160%;

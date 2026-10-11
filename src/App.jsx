@@ -35,13 +35,16 @@ function App() {
             </span>
           </p>
           <h1 className="hero-headline">
-            {t('hero.headlineLine1')}
-            <br />
-            {t('hero.headlineLine2Prefix')}
-            <TypewriterText
-              segments={[{ text: t('hero.headlineTyped') }]}
-              speed={90}
-            />
+            <span className="sr-only">{t('hero.headlineA11y')}</span>
+            <span aria-hidden="true">
+              {t('hero.headlineLine1')}
+              <br />
+              <TypewriterText
+                words={t('hero.headlineWords')}
+                prefix={t('hero.headlineLine2Prefix')}
+                suffix={t('hero.headlineLine2Suffix')}
+              />
+            </span>
           </h1>
           <p className="hero-bio">{t('hero.bio')}</p>
           <div className="hero-actions">

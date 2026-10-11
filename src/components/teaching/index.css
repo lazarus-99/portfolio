@@ -6,7 +6,7 @@
   box-sizing: border-box;
   padding: 32px 40px;
   place-content: center;
-  max-width: 780px;
+  max-width: var(--content-max);
   margin: 0 auto;
   text-align: left;
   scroll-snap-align: start;
@@ -133,5 +133,41 @@
 
   .teaching-dates {
     width: 72px;
+  }
+}
+
+/* Phones: dates become a row between the header and the description, with a horizontal line. */
+@media (max-width: 768px) {
+  .teaching-timeline {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .teaching-dates {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .teaching-timeline-line {
+    width: auto;
+    height: 2px;
+    min-height: 0;
+    margin: 0 12px;
+  }
+
+  .teaching-timeline-line::before,
+  .teaching-timeline-line::after {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+
+  .teaching-timeline-line::before {
+    left: -12px;
+  }
+
+  .teaching-timeline-line::after {
+    left: auto;
+    right: -12px;
   }
 }

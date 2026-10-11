@@ -1,232 +1,13 @@
-.developer-section {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  min-height: 100svh;
-  box-sizing: border-box;
-  padding: 32px 40px;
-  place-content: center;
-  max-width: 780px;
-  margin: 0 auto;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-.developer-summary-title {
-  font-size: 32px;
-  margin-bottom: 12px;
-}
-
-.developer-summary p {
-  color: var(--text-secondary);
-  font-size: 17px;
-  line-height: 160%;
-}
-
-.skills-title {
-  font-size: 20px;
-  margin-bottom: 16px;
-}
-
-.skills-dock {
-  --item: 70px;
-  --gap: 16px;
-  --headroom: 74px;
-  --loop: calc(var(--count) * (var(--item) + var(--gap)));
-  /* Tucks part of the hover headroom behind the heading while keeping magnified icons below it. */
-  margin-top: calc(var(--headroom) * -1 + 18px);
-}
-
-/* Headroom above the row leaves space for magnified icons and tooltips inside the clipped area. */
-.dock-viewport {
-  overflow: hidden;
-  padding: var(--headroom) 0 8px;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-
-.dock-shift {
-  width: max-content;
-}
-
-/* Fixed row height: magnified icons overflow upward instead of pushing content below. */
-.dock-track {
-  display: flex;
-  width: max-content;
-  height: var(--item);
-  pointer-events: auto;
-  animation: dock-scroll calc(var(--count) * 3s) linear infinite;
-}
-
-.dock-track:hover {
-  animation-play-state: paused;
-}
-
-/* Keyboard users get a still row from the first skill, without the edge fade hiding the focused one. */
-.dock-track:focus-within {
-  animation: none;
-}
-
-.dock-viewport:focus-within {
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-
-/* Trailing padding equals the gap so one copy is exactly --loop wide at rest. */
-.dock-list {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--gap);
-  height: 100%;
-  padding: 0 var(--gap) 0 0;
-  margin: 0;
-  list-style: none;
-}
-
-@keyframes dock-scroll {
-  to {
-    transform: translateX(calc(var(--loop) * -1));
-  }
-}
-
-.dock-item {
-  display: flex;
-  align-items: flex-end;
-  flex-shrink: 0;
-  height: 100%;
-}
-
-/* Width/height are driven by motion springs; these are the resting values. */
-.dock-bubble {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--item);
-  height: var(--item);
-  border-radius: 50%;
-  background: var(--sidebar-border);
-  color: var(--text-secondary);
-  cursor: default;
-  transition: color 0.2s ease;
-}
-
-.dock-bubble:hover {
-  color: var(--text-primary);
-}
-
-.dock-item:focus {
-  outline: none;
-}
-
-.dock-item:focus-visible .dock-bubble {
-  color: var(--text-primary);
-  box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--link);
-}
-
-.dock-caption {
-  display: none;
-}
-
-/* Touch screens have no hover, so the names are always visible under the icons. */
-@media (hover: none) {
-  .dock-track {
-    height: calc(var(--item) + 26px);
-  }
-
-  .dock-item {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
-  }
-
-  .dock-caption {
-    display: block;
-    font-size: 12px;
-    line-height: 20px;
-    white-space: nowrap;
-    color: var(--text-secondary);
-  }
-}
-
-.dock-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dock-icon {
-  width: 100%;
-  height: 100%;
-}
-
-.dock-icon-filled {
-  width: 85%;
-  height: 85%;
-}
-
-.dock-tooltip {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: var(--bg-base);
-  border: 1px solid var(--sidebar-border);
-  color: var(--text-primary);
-  font-size: 12px;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skills-dock {
-    margin-top: 0;
-  }
-
-  .dock-viewport {
-    overflow: visible;
-    padding: 0;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .dock-track {
-    animation: none;
-    width: auto;
-    height: auto;
-  }
-
-  .dock-list {
-    flex-wrap: wrap;
-  }
-
-  .dock-list[aria-hidden] {
-    display: none;
-  }
-}
-
 .selected-work {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.selected-work-header {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.selected-work-title {
-  font-size: 20px;
-}
-
-.selected-work-intro {
-  color: var(--text-secondary);
-  font-size: 15px;
+.selected-work-note {
+  max-width: var(--reading-max);
+  color: var(--text-muted);
+  font-size: 14px;
   line-height: 155%;
 }
 
@@ -317,9 +98,176 @@
   text-decoration: underline;
 }
 
-@media (max-width: 1024px) {
-  .developer-section {
-    padding: 32px 20px;
-    gap: 24px;
+/* --- Tile reveal: a tall block whose sticky stage animates with scroll progress --- */
+.tile-reveal {
+  position: relative;
+  height: 300vh;
+  scroll-snap-align: start;
+}
+
+.tile-reveal-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.tile-reveal-grid {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: min(720px, calc(100% - 40px));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile-reveal-tile {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 20px;
+  background: var(--tile-bg);
+  border: 1px solid var(--sidebar-border);
+  color: var(--text-secondary);
+  will-change: transform, opacity;
+}
+
+.tile-reveal-icon {
+  width: 36%;
+  height: 36%;
+}
+
+.tile-reveal-icon-filled {
+  width: 30%;
+  height: 30%;
+}
+
+.tile-reveal-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* The headline sits in the two empty middle cells and stays put while the tiles move. */
+.tile-reveal-copy {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.tile-reveal-title {
+  max-width: min(340px, 44vw);
+  font-size: clamp(26px, 5.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  text-align: center;
+}
+
+/* Positioned under the headline so it doesn't push the headline off the grid's center. */
+.tile-reveal-intro {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: min(460px, 90vw);
+  margin-top: 20px;
+  transform: translateX(-50%);
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 155%;
+  text-align: center;
+}
+
+.selected-work-section {
+  position: relative;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 40px 96px;
+  box-sizing: border-box;
+}
+
+/* Pull the cards up into the stage's empty lower part, so they follow the intro without a gap. */
+.tile-reveal + .selected-work-section {
+  margin-top: -28vh;
+  /* A resting point at the end of the cards, so scrolling up from Teaching doesn't snap past them. */
+  scroll-snap-align: end;
+}
+
+@media (max-width: 768px) {
+  .tile-reveal {
+    height: 240vh;
+  }
+
+  .tile-reveal-grid {
+    gap: 10px;
+  }
+
+  .tile-reveal-tile {
+    border-radius: 14px;
+  }
+
+  .tile-reveal-name {
+    display: none;
+  }
+
+  .selected-work-section {
+    padding: 0 20px 64px;
+  }
+
+  /* The summary wraps to more lines on phones, so leave it a bit more room. */
+  .tile-reveal + .selected-work-section {
+    margin-top: -20vh;
+  }
+}
+
+/* Reduced motion: the same content without the animation. */
+.developer-static {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 96px 40px 32px;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+.developer-static-title {
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+
+.developer-static-summary {
+  max-width: var(--reading-max);
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 160%;
+}
+
+.developer-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .developer-static {
+    padding: 64px 20px 24px;
   }
 }
