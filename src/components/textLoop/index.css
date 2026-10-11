@@ -1,0 +1,46 @@
+.text-loop {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Never narrower than 900px, so the text stays readable on phones; the extra width is cropped. */
+.text-loop-svg {
+  display: block;
+  width: max(100%, 900px);
+  height: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-loop-ribbon {
+  fill: none;
+  stroke-width: 84px;
+}
+
+/* The background blob colors, see-through like the blobs, so the band blends into the page. */
+.text-loop-stop-purple,
+.text-loop-stop-blue,
+.text-loop-stop-cyan {
+  stop-opacity: var(--ribbon-opacity);
+}
+
+.text-loop-stop-purple {
+  stop-color: var(--color-purple);
+}
+
+.text-loop-stop-blue {
+  stop-color: var(--color-blue);
+}
+
+.text-loop-stop-cyan {
+  stop-color: var(--color-cyan);
+}
+
+.text-loop-text {
+  fill: var(--text-primary);
+  font-family: var(--heading);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  white-space: pre;
+}

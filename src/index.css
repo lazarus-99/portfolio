@@ -142,6 +142,7 @@ p {
 
   --blob-opacity: 0.35;
   --tile-bg: rgba(255, 255, 255, 0.04);
+  --ribbon-opacity: 0.5;
 }
 
 /* === TEMA CLARO === */
@@ -162,4 +163,5 @@ p {
 
   --blob-opacity: 0.18;
   --tile-bg: rgba(255, 255, 255, 0.6);
+  --ribbon-opacity: 0.28;
 }

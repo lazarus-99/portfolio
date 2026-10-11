@@ -1,7 +1,11 @@
 import { IconBrandLinkedin, IconBrandGithub } from '@tabler/icons-react';
 import { useLanguage } from '../../context/language';
 import { socialLinks } from '../../data/socials';
+import TextLoop from '../textLoop';
 import './index.css';
+
+// What I build with, from the stack list and the projects.
+const TECH = ['React', 'TypeScript', 'Django', 'PostgreSQL', 'JavaScript', 'MongoDB', 'AWS', 'Vite', 'Material UI', 'PHP', 'C#', 'SQL'];
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -35,6 +39,7 @@ export default function Contact() {
           </a>
         </div>
       </div>
+      <TextLoop items={TECH} />
     </section>
   );
 }
