@@ -76,11 +76,13 @@
 .profile-card-wrap::before {
   content: '';
   position: absolute;
-  inset: 12%;
+  inset: -10%;
   z-index: -1;
   border-radius: 50%;
-  background: var(--accent-gradient);
-  filter: blur(60px);
+  /* A gradient rather than filter: blur(), which is costly to repaint while the card tilts. */
+  background:
+    radial-gradient(closest-side at 30% 40%, var(--color-purple-light), transparent),
+    radial-gradient(closest-side at 70% 60%, var(--color-cyan-light), transparent);
   opacity: calc(var(--blob-opacity) * 0.8);
 }
 
@@ -238,5 +240,19 @@
   .profile-card-dot::after {
     animation: none;
     opacity: 0;
+  }
+}
+
+/* Phones: the heading block and the card are centered; the bio stays left-aligned for easier reading. */
+@media (max-width: 768px) {
+  .about-text .section-eyebrow,
+  .about-name,
+  .about-role,
+  .about-experience {
+    text-align: center;
+  }
+
+  .profile-card-wrap {
+    justify-self: center;
   }
 }

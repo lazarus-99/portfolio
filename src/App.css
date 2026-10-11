@@ -70,7 +70,9 @@
   align-items: center;
   padding: 12px 24px;
   border-radius: 8px;
-  background: var(--color-purple);
+  /* The typed word's gradient in its deep version, in both themes, so white text reads well
+     (at least 5:1 at both ends). */
+  background: linear-gradient(90deg, var(--color-purple), #0e7490);
   color: #fff;
   font-weight: 600;
   font-size: 15px;

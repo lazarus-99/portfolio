@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLanguage } from '../../context/language';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 import SelectedWork from './SelectedWork';
@@ -8,9 +8,26 @@ import './index.css';
 const TileReveal = lazy(() => import('./TileReveal'));
 const StaticIntro = lazy(() => import('./StaticIntro'));
 
+// The reveal pulls in the motion library. Fetching it during the first load competed with the
+// hero's own rendering and made slow devices stutter, so it waits until the browser is idle.
+function useIdle() {
+  const [idle, setIdle] = useState(false);
+  useEffect(() => {
+    const done = () => setIdle(true);
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(done, { timeout: 2500 });
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(done, 1500);
+    return () => clearTimeout(id);
+  }, []);
+  return idle;
+}
+
 export default function Developer() {
   const { t } = useLanguage();
   const reduceMotion = usePrefersReducedMotion();
+  const idle = useIdle();
   const intro = {
     eyebrow: t('developer.title'),
     title: t('developer.summaryTitle'),
@@ -27,7 +44,7 @@ export default function Developer() {
       ) : (
         // Full width so the tiles can fly in from the screen edges; the cards below stay in the content column.
         <Suspense fallback={<div className="tile-reveal" aria-hidden="true" />}>
-          <TileReveal {...intro} />
+          {idle ? <TileReveal {...intro} /> : <div className="tile-reveal" aria-hidden="true" />}
         </Suspense>
       )}
       <div className="selected-work-section">

@@ -86,9 +86,11 @@ export default function TextLoop({ items, separator = '✦' }) {
         <text ref={measureRef} className="text-loop-text" visibility="hidden">
           {segment}
         </text>
-        <text className="text-loop-text" dominantBaseline="central">
+        <text className="text-loop-text">
           <textPath ref={textPathRef} href={`#${pathId}`} startOffset="0">
-            {segment.repeat(copies)}
+            {/* Half the cap height drops the uppercase text onto the band's center line. A fixed
+                shift, because Safari ignores dominant-baseline on text along a path. */}
+            <tspan dy="0.36em">{segment.repeat(copies)}</tspan>
           </textPath>
         </text>
       </svg>

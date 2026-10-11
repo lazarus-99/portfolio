@@ -6,11 +6,23 @@
   overflow: hidden;
 }
 
+/* Each blob is a soft radial gradient instead of a solid circle under filter: blur(120px).
+   It looks the same, but a huge blur on a moving layer is what made weaker phones and GPUs
+   stutter; a gradient is painted once and then only moved. Twice the old size, because the
+   blur used to spread the color about that far. */
 .bg-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
   opacity: var(--blob-opacity);
+  background: radial-gradient(
+    closest-side,
+    var(--blob) 0%,
+    color-mix(in srgb, var(--blob) 85%, transparent) 25%,
+    color-mix(in srgb, var(--blob) 50%, transparent) 50%,
+    color-mix(in srgb, var(--blob) 12%, transparent) 75%,
+    transparent 100%
+  );
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -20,27 +32,27 @@
 }
 
 .bg-blob-1 {
-  width: 500px;
-  height: 500px;
-  background: var(--color-purple);
-  top: -10%;
-  left: -5%;
+  --blob: var(--color-purple);
+  width: 1000px;
+  height: 1000px;
+  top: calc(-10% - 250px);
+  left: calc(-5% - 250px);
   animation: float1 22s ease-in-out infinite;
 }
 
 .bg-blob-2 {
-  width: 450px;
-  height: 450px;
-  background: var(--color-cyan);
-  bottom: -10%;
-  right: -5%;
+  --blob: var(--color-cyan);
+  width: 900px;
+  height: 900px;
+  bottom: calc(-10% - 225px);
+  right: calc(-5% - 225px);
   animation: float2 26s ease-in-out infinite;
 }
 
 .bg-blob-3 {
-  width: 350px;
-  height: 350px;
-  background: var(--color-blue);
+  --blob: var(--color-blue);
+  width: 700px;
+  height: 700px;
   top: 40%;
   left: 50%;
   animation: float3 30s ease-in-out infinite;
