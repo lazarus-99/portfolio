@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './App.css'
 import Background from './components/background';
 import TypewriterText from './components/writer';
@@ -11,11 +12,14 @@ import Contact from './components/contact';
 import BoliviaFlag from './components/boliviaFlag';
 import { useLanguage } from './context/language';
 import { socialLinks } from './data/socials';
+import { hideLoader } from './loader';
 
 function App() {
   const { t } = useLanguage();
   const meta = t('hero.meta');
   const lastSpace = meta.lastIndexOf(' ');
+
+  useEffect(hideLoader, []);
 
   return (
     <>

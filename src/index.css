@@ -169,6 +169,7 @@ p {
   --accent-gradient: linear-gradient(90deg, #a78bfa, #22d3ee);
 
   --sidebar-bg: rgba(10, 10, 15, 0.6);
+  --drawer-bg: rgba(10, 10, 15, 0.82);
   --sidebar-border: rgba(255, 255, 255, 0.08);
 
   --blob-opacity: 0.35;
@@ -190,6 +191,7 @@ p {
   --accent-gradient: linear-gradient(90deg, #6d28d9, #0e7490);
 
   --sidebar-bg: rgba(255, 255, 255, 0.6);
+  --drawer-bg: rgba(247, 247, 250, 0.82);
   --sidebar-border: rgba(0, 0, 0, 0.08);
 
   --blob-opacity: 0.18;
