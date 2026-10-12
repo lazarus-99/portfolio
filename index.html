@@ -6,6 +6,9 @@
     <link rel="icon" type="image/svg+xml" href="/logo-dark-glass.svg" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/logo-light-glass.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- The page renders from JavaScript, so without these the fonts would only be requested after it runs. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>Lazaro Dev</title>
     <meta name="description" content="Lazaro Toconas, remote full stack developer based in Bolivia. Six years building applications end to end, from the database up to the interface." />
 
