@@ -17,6 +17,29 @@
   }
 }
 
+/* Hero entrance: its four blocks rise in one after another as the loader fades out
+   (html.is-loaded, set in src/loader.js). Slower than UI feedback because it's seen once. */
+html.reveal-ready .hero > * {
+  opacity: 0;
+  translate: 0 16px;
+}
+
+html.is-loaded .hero > * {
+  opacity: 1;
+  translate: none;
+  transition: opacity 700ms var(--ease-out), translate 700ms var(--ease-out);
+}
+
+html.is-loaded .hero > :nth-child(2) { transition-delay: 70ms; }
+html.is-loaded .hero > :nth-child(3) { transition-delay: 140ms; }
+html.is-loaded .hero > :nth-child(4) { transition-delay: 210ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready .hero > * {
+    translate: none;
+  }
+}
+
 .hero-meta {
   font-size: 13px;
   font-weight: 700;
@@ -77,12 +100,18 @@
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: filter 200ms ease, transform 160ms var(--ease-out);
 }
 
-.hero-cta:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta:hover {
+    filter: brightness(1.12);
+  }
+}
+
+/* Press feedback: the button gives slightly under the finger or click. */
+.hero-cta:active {
+  transform: scale(0.97);
 }
 
 .hero-email {

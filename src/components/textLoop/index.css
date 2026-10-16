@@ -1,6 +1,8 @@
 .text-loop {
   width: 100%;
   overflow: hidden;
+  /* Only the band takes the pointer; the rest of the box lets hovers and clicks through. */
+  pointer-events: none;
 }
 
 /* Never narrower than 900px, so the text stays readable on phones; the extra width is cropped. */
@@ -15,6 +17,8 @@
 .text-loop-ribbon {
   fill: none;
   stroke-width: 84px;
+  /* The painted band counts as the hover area, even where it's see-through. */
+  pointer-events: stroke;
 }
 
 /* The background blob colors, see-through like the blobs, so the band blends into the page. */

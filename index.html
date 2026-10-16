@@ -32,6 +32,8 @@
         try { theme = localStorage.getItem('theme'); } catch (e) {}
         if (!theme) theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', theme);
+        // Lets scroll-reveal elements start hidden without a flash of visible content.
+        document.documentElement.classList.add('reveal-ready');
       })();
     </script>
     <!-- Loader styles live here, not in the app's CSS, so they apply before anything else loads. -->

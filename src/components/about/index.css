@@ -225,7 +225,11 @@
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: background 200ms ease, transform 160ms var(--ease-out);
+}
+
+.profile-card-button:active {
+  transform: scale(0.97);
 }
 
 .profile-card-button:hover {

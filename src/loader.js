@@ -7,6 +7,8 @@ export function hideLoader() {
   fonts.then(() => {
     requestAnimationFrame(() => {
       loader.classList.add('is-done');
+      // Starts the hero's entrance as the loader fades, so it isn't spent behind the loader.
+      document.documentElement.classList.add('is-loaded');
       setTimeout(() => loader.remove(), 500);
     });
   });

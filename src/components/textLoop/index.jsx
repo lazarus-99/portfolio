@@ -18,6 +18,7 @@ export default function TextLoop({ items, separator = '✦' }) {
 
   useEffect(() => {
     const wrap = wrapRef.current;
+    const ribbon = pathRef.current;
     const textPath = textPathRef.current;
     let segmentLength = 0;
     let offset = 0;
@@ -58,17 +59,18 @@ export default function TextLoop({ items, separator = '✦' }) {
       sync();
     });
     observer.observe(wrap);
+    // Pauses only over the band itself (see .text-loop-ribbon), not the empty space around it.
     const onEnter = () => { hovered = true; sync(); };
     const onLeave = () => { hovered = false; sync(); };
-    wrap.addEventListener('pointerenter', onEnter);
-    wrap.addEventListener('pointerleave', onLeave);
+    ribbon.addEventListener('pointerenter', onEnter);
+    ribbon.addEventListener('pointerleave', onLeave);
 
     return () => {
       cancelled = true;
       cancelAnimationFrame(frame);
       observer.disconnect();
-      wrap.removeEventListener('pointerenter', onEnter);
-      wrap.removeEventListener('pointerleave', onLeave);
+      ribbon.removeEventListener('pointerenter', onEnter);
+      ribbon.removeEventListener('pointerleave', onLeave);
     };
   }, [reduceMotion, segment]);
 

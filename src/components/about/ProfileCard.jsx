@@ -37,7 +37,7 @@ export default function ProfileCard({ alt, handle, status, contactLabel, contact
   };
 
   return (
-    <div className="profile-card-wrap">
+    <div className="profile-card-wrap" data-reveal style={{ '--i': 2 }}>
       <div ref={cardRef} className="profile-card" onPointerMove={handleMove} onPointerLeave={handleLeave}>
         <img className="profile-card-photo" src={portrait} alt={alt} width="720" height="1003" loading="lazy" decoding="async" />
         <div className="profile-card-shine" aria-hidden="true" />

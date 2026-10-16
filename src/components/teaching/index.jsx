@@ -8,7 +8,7 @@ export default function Teaching() {
 
   return (
     <section id="teaching" className="teaching-section">
-      <h2 className="section-eyebrow">{t('teaching.title')}</h2>
+      <h2 className="section-eyebrow" data-reveal>{t('teaching.title')}</h2>
       {Array.isArray(entries) && entries.map((entry) => (
         <EducationEntry key={`${entry.school}-${entry.title}`} {...entry} />
       ))}

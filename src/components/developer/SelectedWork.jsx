@@ -5,7 +5,7 @@ function WorkCard({ index, project, labels }) {
   const number = String(index + 1).padStart(2, '0');
 
   return (
-    <article className="work-card">
+    <article className="work-card" data-reveal style={{ '--i': index + 1 }}>
       <span className="work-meta">
         {number} · {label}
       </span>
@@ -53,7 +53,7 @@ export default function SelectedWork() {
 
   return (
     <div className="selected-work">
-      <p className="selected-work-note">{t('developer.work.intro')}</p>
+      <p className="selected-work-note" data-reveal>{t('developer.work.intro')}</p>
       <div className="work-grid">
         {Array.isArray(projects) &&
           projects.map((project, index) => (

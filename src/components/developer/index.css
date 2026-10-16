@@ -25,6 +25,22 @@
   background: var(--bg-surface);
   border: 1px solid var(--sidebar-border);
   border-radius: 16px;
+  /* The scroll reveal (opacity, translate) keeps its stagger; the hover lift answers quickly. */
+  transition:
+    opacity 600ms var(--ease-out) calc(var(--i, 0) * 70ms),
+    translate 600ms var(--ease-out) calc(var(--i, 0) * 70ms),
+    transform 250ms var(--ease-out),
+    border-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+/* Mouse only: on touch screens a tap would leave the card stuck in its hover state. */
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--color-purple-light) 45%, var(--sidebar-border));
+    box-shadow: 0 18px 40px -18px rgba(109, 40, 217, 0.45);
+  }
 }
 
 .work-meta {

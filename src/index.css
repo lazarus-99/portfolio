@@ -30,6 +30,11 @@
 }
 
 :root {
+  /* Motion: strong custom curves; the built-in CSS easings are too soft to feel intentional. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); /* entrances, hovers, presses */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* things moving across the screen */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1); /* iOS-like sheet curve, for the mobile menu */
+
   --sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --heading: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
@@ -197,4 +202,30 @@ p {
   --blob-opacity: 0.18;
   --tile-bg: rgba(255, 255, 255, 0.6);
   --ribbon-opacity: 0.28;
+}
+
+/* --- Scroll reveal ---
+   Elements marked data-reveal fade and rise 16px the first time they scroll into view
+   (src/reveal.js sets data-revealed). --i staggers siblings 70ms apart. The hidden state only
+   applies under html.reveal-ready, which index.html sets before the first paint.
+   :where() keeps specificity at zero, so a component can set its own transition list. */
+:where(html.reveal-ready [data-reveal]) {
+  opacity: 0;
+  translate: 0 16px;
+  transition:
+    opacity 600ms var(--ease-out) calc(var(--i, 0) * 70ms),
+    translate 600ms var(--ease-out) calc(var(--i, 0) * 70ms);
+}
+
+:where(html.reveal-ready [data-reveal][data-revealed]) {
+  opacity: 1;
+  translate: none;
+}
+
+/* Reduced motion: a gentle fade only, no movement. */
+@media (prefers-reduced-motion: reduce) {
+  :where(html.reveal-ready [data-reveal]) {
+    translate: none;
+    transition: opacity 400ms ease;
+  }
 }

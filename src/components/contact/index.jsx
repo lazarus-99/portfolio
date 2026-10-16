@@ -13,9 +13,9 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-inner">
-        <h2 className="section-eyebrow">{t('contact.title')}</h2>
-        <h3 className="contact-headline">{t('contact.headline')}</h3>
-        <div className="contact-links">
+        <h2 className="section-eyebrow" data-reveal>{t('contact.title')}</h2>
+        <h3 className="contact-headline" data-reveal style={{ '--i': 1 }}>{t('contact.headline')}</h3>
+        <div className="contact-links" data-reveal style={{ '--i': 2 }}>
           <a className="contact-pill" href={`mailto:${socialLinks.email}`}>
             {socialLinks.email}
           </a>

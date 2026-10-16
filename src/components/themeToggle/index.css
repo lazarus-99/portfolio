@@ -10,9 +10,13 @@
   backdrop-filter: blur(10px);
   color: var(--text-primary);
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 200ms ease, transform 160ms var(--ease-out);
 }
 
 .toggle-btn:hover {
   opacity: 0.75;
+}
+
+.toggle-btn:active {
+  transform: scale(0.95);
 }

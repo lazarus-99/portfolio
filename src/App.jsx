@@ -13,6 +13,7 @@ import BoliviaFlag from './components/boliviaFlag';
 import { useLanguage } from './context/language';
 import { socialLinks } from './data/socials';
 import { hideLoader } from './loader';
+import { startReveal } from './reveal';
 
 function App() {
   const { t } = useLanguage();
@@ -20,6 +21,7 @@ function App() {
   const lastSpace = meta.lastIndexOf(' ');
 
   useEffect(hideLoader, []);
+  useEffect(startReveal, []);
 
   return (
     <>

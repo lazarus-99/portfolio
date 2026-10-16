@@ -9,11 +9,11 @@ export default function About() {
   return (
     <section id="about" className="about-section">
       <div className="about-text">
-        <h2 className="section-eyebrow">{t('about.title')}</h2>
-        <h3 className="about-name">Lazaro Toconas</h3>
-        <p className="about-role">{t('about.role')}</p>
-        <p className="about-experience">{t('about.experience')}</p>
-        <p className="about-bio">{t('about.bio')}</p>
+        <h2 className="section-eyebrow" data-reveal>{t('about.title')}</h2>
+        <h3 className="about-name" data-reveal style={{ '--i': 1 }}>Lazaro Toconas</h3>
+        <p className="about-role" data-reveal style={{ '--i': 2 }}>{t('about.role')}</p>
+        <p className="about-experience" data-reveal style={{ '--i': 3 }}>{t('about.experience')}</p>
+        <p className="about-bio" data-reveal style={{ '--i': 4 }}>{t('about.bio')}</p>
       </div>
       <ProfileCard
         alt={t('about.portraitAlt')}

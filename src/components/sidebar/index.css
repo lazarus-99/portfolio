@@ -172,7 +172,8 @@
        an off-screen layer; hiding it makes the blur get recreated on every open. It also takes
        the closed menu's links out of the tab order. */
     visibility: hidden;
-    transition: transform 0.3s ease, visibility 0s linear 0.3s;
+    /* Closing is quicker than opening: the menu should get out of the way. */
+    transition: transform 280ms var(--ease-drawer), visibility 0s linear 280ms;
     border-right: none;
     /* Opaque enough to read well even where the blur isn't applied (some Android devices). */
     background: var(--drawer-bg);
@@ -185,8 +186,35 @@
   .sidebar-open {
     transform: translateX(0);
     visibility: visible;
-    transition: transform 0.3s ease, visibility 0s;
+    transition: transform 450ms var(--ease-drawer), visibility 0s;
   }
+
+  /* The menu's contents follow the panel in: logo, each link, then the socials, 50ms apart.
+     When closing they reset only after the panel is gone, so they never vanish mid-slide. */
+  .sidebar-logo,
+  .sidebar-nav a,
+  .sidebar-socials {
+    opacity: 0;
+    translate: 0 12px;
+    transition: color 0.2s ease, opacity 0s linear 280ms, translate 0s linear 280ms;
+  }
+
+  .sidebar-open .sidebar-logo,
+  .sidebar-open .sidebar-nav a,
+  .sidebar-open .sidebar-socials {
+    opacity: 1;
+    translate: none;
+    transition:
+      color 0.2s ease,
+      opacity 400ms var(--ease-out) var(--d, 0ms),
+      translate 500ms var(--ease-out) var(--d, 0ms);
+  }
+
+  .sidebar-open .sidebar-logo { --d: 120ms; }
+  .sidebar-open .sidebar-nav a:nth-child(1) { --d: 170ms; }
+  .sidebar-open .sidebar-nav a:nth-child(2) { --d: 220ms; }
+  .sidebar-open .sidebar-nav a:nth-child(3) { --d: 270ms; }
+  .sidebar-open .sidebar-socials { --d: 320ms; }
 
   .sidebar-logo img {
     width: 44px;
@@ -228,5 +256,38 @@
     justify-content: center;
     width: 100%;
     margin-top: 40px;
+  }
+}
+
+.hamburger-btn {
+  transition: transform 160ms var(--ease-out);
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+/* Reduced motion: the menu fades instead of sliding, and its contents appear with it. */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transform: none;
+    opacity: 0;
+    transition: opacity 200ms ease, visibility 0s linear 200ms;
+  }
+
+  .sidebar-open {
+    opacity: 1;
+    transition: opacity 200ms ease, visibility 0s;
+  }
+
+  .sidebar-logo,
+  .sidebar-nav a,
+  .sidebar-socials,
+  .sidebar-open .sidebar-logo,
+  .sidebar-open .sidebar-nav a,
+  .sidebar-open .sidebar-socials {
+    opacity: 1;
+    translate: none;
+    transition: color 0.2s ease;
   }
 }

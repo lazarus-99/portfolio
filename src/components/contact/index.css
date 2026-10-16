@@ -52,12 +52,19 @@
   font-size: 15px;
   text-decoration: none;
   white-space: nowrap;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 200ms var(--ease-out), border-color 200ms ease;
 }
 
-.contact-pill:hover {
-  border-color: var(--color-cyan);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .contact-pill:hover {
+    border-color: var(--color-cyan);
+    transform: translateY(-2px);
+  }
+}
+
+.contact-pill:active {
+  transform: scale(0.97);
+  transition-duration: 120ms;
 }
 
 /* On desktop the band runs under the sidebar too, out to the screen's left edge. */

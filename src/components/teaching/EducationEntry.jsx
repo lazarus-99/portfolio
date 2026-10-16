@@ -4,7 +4,7 @@ export default function EducationEntry({ title, school, subjects, dateStart, dat
   const { t } = useLanguage();
 
   return (
-    <div className="education-entry">
+    <div className="education-entry" data-reveal style={{ '--i': 1 }}>
       <div className="teaching-header">
         {logo && <img src={logo} alt="" className="teaching-logo" />}
         <div className="teaching-header-text">
